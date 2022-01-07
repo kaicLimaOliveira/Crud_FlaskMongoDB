@@ -15,15 +15,15 @@ class Pages:
             lastName = req.form.get('lastName')
             
             
-            if not firstName:
-                return redirect(url_for('pages.new_user'))
-            if not lastName:
-                return redirect(url_for('pages.new_user'))
+            # if not firstName or not lastName:
+            #     return redirect(url_for('pages.new_user'))
+            
         except Exception as e:
             print(e)
-            
         
         return render_template('new_user.html')
+    
+            
 
       
     def edit_user(self, req):

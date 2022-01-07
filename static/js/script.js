@@ -4,9 +4,7 @@ $(document).ready(() => {
         $('#lastName').val() == ''
     })
 
-    $('.btn-submit').on('click', (event) => {
-        event.preventDefault()
-
+    $('.btn-submit').on('click', () => {
         if ($('#firstName').val() == '' || $('#lastName').val() == '') {
             alert('Não há nada no formulario para enviar')
         } else {

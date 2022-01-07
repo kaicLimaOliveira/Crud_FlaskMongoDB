@@ -83,3 +83,8 @@ input {
 i {
     color: #fff;
 }
+
+i:hover, .btn:hover{
+    filter:brightness(0.8);
+    transition:0.8s;
+}

@@ -1,59 +1,43 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'layout.html' %}
+    {% block head %}
     <link rel="stylesheet" href="/static/css/index.css">
+    {% endblock %}
 
-    <!-- <link rel="stylesheet" href="/static/css/css/all.css"> -->
+        {% block title%}
+        Home
+        {% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="/static/js/script.js"></script>
-    <link rel="stylesheet" href="/static/css/global.css">
-    <script src="https://kit.fontawesome.com/5b1c173e42.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="/static/img/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
-
-    <title>Home</title>
-</head>
-
-<body>
+{% block content %}
     <table class="container">
         <thead class="table-header">
             <tr class="content">
-                <th scope="col" class="style-description">ID</th>
-                <th scope="col" class="style-description">Primeiro Nome</th>
-                <th scope="col" class="style-description">Último nome</th>
-                <th scope="col" class="style-description">Editar</th>
+                <th class="style-description">ID</th>
+                <th class="style-description">Primeiro Nome</th>
+                <th class="style-description">Último nome</th>
+                <th class="style-description">Editar</th>
             </tr>
         </thead>
 
+        {% for user in users %}
         <tbody>
             <tr class="content-body">
-                <td>x</td>
-                <td>x</td>
-                <td>x</td>
+                <td class="style-information">{{user['_id']}}</td>
+                <td class="style-information">{{user['nome']}}</td>
+                <td class="style-information">{{user['sobrenome']}}</td>
                 <td class="table-data">
                     <a href="{{url_for('pages.new_user')}}">
                         <i class="fas fa-user-plus"></i>
                     </a>
-                    <a href="{{url_for('pages.edit_user')}}">
+                    <a href="{{url_for('pages.edit_user', idx=user['nome', 'sobrenome'])}}">
                         <i class="fas fa-user-edit"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-user-times"></i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-
+                        </a>
+                        <a href="{{url_for('pages.delete_user', idx=user['_id'])}}">
+                            <i class="fas fa-user-times"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
     </table>
-</body>
-
-
-</html>
+{% endblock %}
+    

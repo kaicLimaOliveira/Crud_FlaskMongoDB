@@ -12,6 +12,11 @@
     height: 50px;
 }
 
+.style-information{
+    font: 16px 'Roboto';
+    font-weight: 500;
+}
+
 .row {
     display: flex;
 }

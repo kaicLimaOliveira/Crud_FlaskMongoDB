@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from flask import Flask, render_template, redirect, url_for
 from models import UsersModel
 
@@ -10,27 +11,48 @@ class Pages:
         return render_template('index.html', users=allUsers)
     
     def new_user(self, req):
-        try:
-            firstName = req.form.get('firstName')
-            lastName = req.form.get('lastName')
+        if req.method == 'GET':
+            return render_template('new_user.html')
+        elif req.method == 'POST': 
+            try:
+                firstName = req.form.get('firstName')
+                lastName = req.form.get('lastName')
+                try:
+                    if not firstName or not lastName:
+                        return redirect(url_for('pages.new_user'))
+                    else:
+                        data = {
+                            'nome':firstName, 
+                            'sobrenome': lastName    
+                        }
+                        
+                        self.users.create(data)
+                        return redirect(url_for('pages.index'))  
+                except Exception as e:
+                    print(e)  
+                
+            except Exception as e:
+                print(e)
             
-            
-            # if not firstName or not lastName:
-            #     return redirect(url_for('pages.new_user'))
-            
-        except Exception as e:
-            print(e)
-        
-        return render_template('new_user.html')
-    
-            
-
-      
     def edit_user(self, req):
+        if req.method == 'GET':
+            user = self.users.find({})
+            
+            return render_template('edit_user.html', user=user)
+        # elif req.method == 'POST':
+        #     allUsers = self.users.find({'_id:idx'})
+        #     print(allUsers)
+            
+            
+        return redirect(url_for('pages.index'))
         
-        return render_template('edit_user.html')
-    
-    def delete_user(self, req):
+    def delete_user(self, req, idx):
+        if req.method=='GET':
+            try:
+                self.users.delete({'_id':idx})
         
+            except Exception as e:
+                print(e)
         
-        redirect(url_for('pages.index'))
+        return redirect(url_for('pages.index'))
+        

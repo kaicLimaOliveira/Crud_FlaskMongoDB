@@ -1,29 +1,29 @@
 {% extends 'layout.html' %}
 
-    {% block head %}
-    <link rel="stylesheet" href="/static/css/user.css">
-    {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/user.css">
+{% endblock %}
 
-    {% block title %}
-    Cadastro - Alterando Usuário
-    {% endblock %}
+{% block title %}
+Cadastro - Alterando Usuário
+{% endblock %}
 
 {% block content %}
-    <form action="POST">
-        <h1>Formulário de Alteração</h1>
-        <div>
-            <label for="">Primeiro Nome:</label>
-            <input id="firstName" value="{{user['nome']}}" name="firstName" type="text" required>
-        </div>
-        <div>
-            <label for="">Ultimo Nome:</label>
-            <input id="lastName" value="{{user['sobrenome']}}" name="lastName" type="text" required>
-        </div>
-        <div class="separator">Envie o seu formulario</div>
-        <div class="display">
-            <button class="btn btn-submit" type="submit">Enviar</button>
-            <button class="btn btn-clear" type="reset">Limpar</button>
-            <a href="{{url_for('pages.index')}}" class="btn btn-back"><i class="fas fa-undo"></i></a>
-        </div>
-    </form>
+<form method="POST">
+    <h1>Formulário de Alteração</h1>
+    <div>
+        <label>Primeiro Nome:</label>
+        <input id="firstName" value="{{user['nome']}}" name="firstName" type="text" required>
+    </div>
+    <div>
+        <label>Ultimo Nome:</label>
+        <input id="lastName" value="{{user['sobrenome']}}" name="lastName" type="text" required>
+    </div>
+    <div class="separator">Envie o seu formulario</div>
+    <div class="display">
+        <button class="btn btn-submit" type="submit">Enviar</button>
+        <button class="btn btn-clear" type="reset">Limpar</button>
+        <a href="{{url_for('pages.index')}}" class="btn btn-back"><i class="fas fa-undo"></i></a>
+    </div>
+</form>
 {% endblock %}

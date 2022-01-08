@@ -34,15 +34,24 @@ class Pages:
             except Exception as e:
                 print(e)
             
-    def edit_user(self, req):
+    def edit_user(self, req, idx):
         if req.method == 'GET':
-            user = self.users.find({})
+            return render_template('edit_user.html')
+        elif req.method == 'POST':
+            firstName = req.form.get('firstName')
+            lastName = req.form.get('lastName')
+            data = {
+                    'nome':firstName, 
+                    'sobrenome': lastName    
+            }
             
-            return render_template('edit_user.html', user=user)
-        # elif req.method == 'POST':
-        #     allUsers = self.users.find({'_id:idx'})
-        #     print(allUsers)
+            if not firstName or not lastName:
+                return redirect(url_for('pages.new_user'))
             
+            try:
+                self.users.update({'_id':idx}, data)
+            except Exception as e:
+                print(e)
             
         return redirect(url_for('pages.index'))
         

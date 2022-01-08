@@ -11,9 +11,9 @@ def index():
 def new_user():
     return Pages().new_user(request)
 
-@pages.route('edit_user', methods=['GET', 'POST'])
-def edit_user():
-    return Pages().edit_user(request)
+@pages.route('edit_user/<idx>', methods=['GET', 'POST'])
+def edit_user(idx):
+    return Pages().edit_user(request, idx)
 
 @pages.route('delete_user/<idx>', methods=['GET'])
 def delete_user(idx):

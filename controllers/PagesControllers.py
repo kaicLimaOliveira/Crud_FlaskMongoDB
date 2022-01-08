@@ -36,7 +36,7 @@ class Pages:
             
     def edit_user(self, req, idx):
         if req.method == 'GET':
-            user = self.users.find({'_id':idx})
+            user = self.users.find({'_id':idx})[0]
             
             return render_template('edit_user.html', users=user)
         elif req.method == 'POST':

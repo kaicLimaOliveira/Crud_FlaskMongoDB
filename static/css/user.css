@@ -1,8 +1,13 @@
+body {
+    background-color: #42b2b8;
+}
+
 form {
-    width: 800px;
+    width: 600px;
     margin-top: 3rem;
-    padding: 15px;
+    padding: 40px;
     border-radius: 20px;
+    background-color: #fff;
 }
 
 h1 {
@@ -84,7 +89,65 @@ i {
     color: #fff;
 }
 
-i:hover, .btn:hover{
-    filter:brightness(0.8);
-    transition:0.8s;
+i:hover,
+.btn:hover {
+    filter: brightness(0.8);
+    transition: 0.8s;
+}
+
+/* CSS - animation */
+form {
+    overflow: hidden;
+    animation: fade 400ms;
+}
+
+input#firstName:nth-child(1) {
+    animation: move 800ms;
+    animation-delay: 200ms;
+}
+
+input#lastName:nth-child(2) {
+    animation: move 800ms;
+    animation-delay: 300ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes move {
+    from {
+        opacity: 0;
+        transform: translateX(-35%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+form.validate-error {
+    animation: nono 300ms linear, fade paused, move paused;
+    animation-iteration-count: 2;
+}
+
+@keyframes nono {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    35% {
+        transform: translateX(-15%);
+    }
+    70% {
+        transform: translateX(15%);
+    }
 }

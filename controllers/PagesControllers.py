@@ -36,20 +36,24 @@ class Pages:
             
     def edit_user(self, req, idx):
         if req.method == 'GET':
-            return render_template('edit_user.html')
-        elif req.method == 'POST':
-            firstName = req.form.get('firstName')
-            lastName = req.form.get('lastName')
-            data = {
-                    'nome':firstName, 
-                    'sobrenome': lastName    
-            }
+            user = self.users.find({'_id':idx})
             
-            if not firstName or not lastName:
-                return redirect(url_for('pages.new_user'))
+            return render_template('edit_user.html', users=user)
+        elif req.method == 'POST':
             
             try:
-                self.users.update({'_id':idx}, data)
+                firstName = req.form.get('firstName')
+                lastName = req.form.get('lastName')
+            
+                if not firstName or not lastName:
+                    return redirect(url_for('pages.new_user'))
+                else:
+                    data = {
+                            'nome':firstName, 
+                            'sobrenome': lastName    
+                    }
+                    
+                    self.users.update({'_id':idx}, data)
             except Exception as e:
                 print(e)
             
@@ -57,11 +61,7 @@ class Pages:
         
     def delete_user(self, req, idx):
         if req.method=='GET':
-            try:
-                self.users.delete({'_id':idx})
-        
-            except Exception as e:
-                print(e)
+            self.users.delete({'_id':idx})
         
         return redirect(url_for('pages.index'))
         

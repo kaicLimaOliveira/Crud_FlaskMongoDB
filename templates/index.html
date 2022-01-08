@@ -1,43 +1,43 @@
 {% extends 'layout.html' %}
-    {% block head %}
-    <link rel="stylesheet" href="/static/css/index.css">
-    {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/index.css">
+{% endblock %}
 
-        {% block title%}
-        Home
-        {% endblock %}
+{% block title%}
+Home
+{% endblock %}
 
 {% block content %}
-    <table class="container">
-        <thead class="table-header">
-            <tr class="content">
-                <th class="style-description">ID</th>
-                <th class="style-description">Primeiro Nome</th>
-                <th class="style-description">Último nome</th>
-                <th class="style-description">Editar</th>
-            </tr>
-        </thead>
+<table class="container">
+    <a class="btn" href="{{url_for('pages.new_user')}}">
+        Novo Usuário
+    </a>
 
-        {% for user in users %}
-        <tbody>
-            <tr class="content-body">
-                <td class="style-information">{{user['_id']}}</td>
-                <td class="style-information">{{user['nome']}}</td>
-                <td class="style-information">{{user['sobrenome']}}</td>
-                <td class="table-data">
-                    <a href="{{url_for('pages.new_user')}}">
-                        <i class="fas fa-user-plus"></i>
-                    </a>
-                    <a href="{{url_for('pages.edit_user', idx=user['nome', 'sobrenome'])}}">
-                        <i class="fas fa-user-edit"></i>
-                        </a>
-                        <a href="{{url_for('pages.delete_user', idx=user['_id'])}}">
-                            <i class="fas fa-user-times"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        {% endfor %}
-    </table>
+    <thead class="table-header">
+        <tr class="content">
+            <th class="style-description">ID</th>
+            <th class="style-description">Primeiro Nome</th>
+            <th class="style-description">Último nome</th>
+            <th class="style-description">Editar</th>
+        </tr>
+    </thead>
+
+    {% for user in users %}
+    <tbody>
+        <tr class="content-body">
+            <td class="style-information">{{user['_id']}}</td>
+            <td class="style-information">{{user['nome']}}</td>
+            <td class="style-information">{{user['sobrenome']}}</td>
+            <td class="table-data">
+                <a href="{{url_for('pages.edit_user', idx=user['_id'])}}">
+                    <i class="fas fa-user-edit"></i>
+                </a>
+                <a href="{{url_for('pages.delete_user', idx=user['_id'])}}">
+                    <i class="fas fa-user-times"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
 {% endblock %}
-    

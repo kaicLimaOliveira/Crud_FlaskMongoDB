@@ -18,6 +18,7 @@
   <img alt="Letmeask" src=".github/img1.jpeg" width="80%">
   <img alt="Letmeask" src=".github/img2.jpeg" width="80%">
   <img alt="Letmeask" src=".github/img3.jpeg" width="80%">
+  <img alt="Letmeask" src=".github/img4.jpeg" width="80%">
 </p>
 
 ## 💻 Projeto

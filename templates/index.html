@@ -32,9 +32,12 @@ Home
                 <a href="{{url_for('pages.edit_user', idx=user['_id'])}}">
                     <i class="fas fa-user-edit"></i>
                 </a>
-                <a href="{{url_for('pages.delete_user', idx=user['_id'])}}">
+
+                <button class="delete-link" value="{{user['_id']}}">
                     <i class="fas fa-user-times"></i>
-                </a>
+                </button>
+
+
             </td>
         </tr>
     </tbody>

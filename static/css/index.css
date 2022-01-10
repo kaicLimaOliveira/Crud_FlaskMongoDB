@@ -12,7 +12,6 @@ body {
 
 .content-body {
     background-color: #a9d5d6;
-    height: 50px;
 }
 
 .style-information {
@@ -48,11 +47,6 @@ a {
     margin: 10px;
 }
 
-a.new-user-link {
-    float: left;
-    padding: 3rem 0 0 15rem;
-}
-
 .btn {
     height: 50px;
     border-radius: 8px;
@@ -69,6 +63,20 @@ a.new-user-link {
     background-color: #000;
     margin-left: 5rem;
     margin-top: 1rem;
+}
+
+.table-data {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+    background-color: #a9d5d6;
+    font-size: 18px;
 }
 
 i:hover {

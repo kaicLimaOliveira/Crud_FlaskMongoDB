@@ -20,14 +20,14 @@ class Pages:
                 try:
                     if not firstName or not lastName:
                         return redirect(url_for('pages.new_user'))
-                    else:
-                        data = {
-                            'nome':firstName, 
-                            'sobrenome': lastName    
-                        }
-                        
-                        self.users.create(data)
-                        return redirect(url_for('pages.index'))  
+
+                    data = {
+                        'nome':firstName, 
+                        'sobrenome': lastName    
+                    }
+                    
+                    self.users.create(data)
+                    return redirect(url_for('pages.index'))  
                 except Exception as e:
                     print(e)  
                 
@@ -36,11 +36,15 @@ class Pages:
             
     def edit_user(self, req, idx):
         if req.method == 'GET':
-            user = self.users.find({'_id':idx})[0]
+            
+            user = self.users.find_by_id(idx)
+            if not user:
+                redirect(url_for('pages.index'))
+                
+            print(user)
             
             return render_template('edit_user.html', users=user)
         elif req.method == 'POST':
-            
             try:
                 firstName = req.form.get('firstName')
                 lastName = req.form.get('lastName')
@@ -62,6 +66,7 @@ class Pages:
     def delete_user(self, req, idx):
         if req.method=='GET':
             self.users.delete({'_id':idx})
+            
         
         return redirect(url_for('pages.index'))
         

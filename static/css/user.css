@@ -135,7 +135,7 @@ input#lastName:nth-child(2) {
 }
 
 form.validate-error {
-    animation: nono 300ms linear, fade paused, move paused;
+    animation: nono 250ms linear, fade paused, move paused;
     animation-iteration-count: 2;
 }
 

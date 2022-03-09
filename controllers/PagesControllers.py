@@ -40,8 +40,6 @@ class Pages:
             user = self.users.find_by_id(idx)
             if not user:
                 redirect(url_for('pages.index'))
-                
-            print(user)
             
             return render_template('edit_user.html', users=user)
         elif req.method == 'POST':
